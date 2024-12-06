@@ -8,7 +8,7 @@ import { Product } from "@/interfaces/product.interface";
 import { Supplier } from "@/interfaces/supplier.interface";
 import { ApiResponse } from "@/interfaces/response.interface";
 
-const FormPenerimaanBarang: React.FC = () => {
+const FormPengambilanBarang: React.FC = () => {
   const [error, setError] = useState<string>("");
 
   const [note, setNote] = useState<string>("");
@@ -79,6 +79,7 @@ const FormPenerimaanBarang: React.FC = () => {
   };
 
   const handleProductSearch = (index: number, inputValue: string) => {
+    console.log("is this called");
     handleItemChange(index, "name", inputValue);
     handleItemChange(index, "id", "");
     fetchItemOptions(inputValue);
@@ -158,7 +159,7 @@ const FormPenerimaanBarang: React.FC = () => {
         pcs: Number(items[i].pcs),
       });
     }
-    await post(`/warehouses/${warehouse.id}/items/in`, {
+    await post(`/warehouses/${warehouse.id}/items/out`, {
       date: new Date(),
       items: submittedItem,
       warehouse: warehouse,
@@ -168,7 +169,7 @@ const FormPenerimaanBarang: React.FC = () => {
 
   return (
     <>
-      <h2>Formulir Penerimaan Barang</h2>
+      <h2>Formulir Pengambilan Barang</h2>
       <label>Nama Supplier</label>
       <input
         type="text"
@@ -331,4 +332,4 @@ const FormPenerimaanBarang: React.FC = () => {
   );
 };
 
-export default FormPenerimaanBarang;
+export default FormPengambilanBarang;

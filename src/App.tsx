@@ -1,8 +1,9 @@
 import React from "react";
-import FormPenerimaanBarang from "./components/FormPenerimaanBarang";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 
 function App() {
-  return <FormPenerimaanBarang />;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
