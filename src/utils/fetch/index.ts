@@ -2,7 +2,7 @@ import { ResponseError } from "../customError";
 
 async function http<T>(path: string, config: RequestInit): Promise<T> {
   try {
-    const request = new Request("http://localhost:8080" + path, {
+    const request = new Request(import.meta.env.VITE_BACKEND_URL + path, {
       ...config,
       credentials: "include" as RequestCredentials,
     });
