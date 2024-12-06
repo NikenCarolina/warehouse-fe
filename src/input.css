@@ -1,0 +1,137 @@
+/* Input container */
+.input-container {
+  position: relative;
+  margin: 2rem 0 20px 0;
+}
+
+/* Input field */
+.input-field {
+  display: block;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  outline: none;
+  background-color: transparent;
+}
+
+/* Input label */
+.input-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 16px;
+  color: rgba(204, 204, 204, 0);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+/* Input highlight */
+.input-highlight {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #007bff;
+  transition: all 0.3s ease;
+}
+
+/* Input field:focus styles */
+.input-field:focus + .input-label {
+  top: -20px;
+  font-size: 12px;
+  color: #007bff;
+}
+
+.input-field:focus + .input-label + .input-highlight {
+  width: 100%;
+}
+
+.input-container ul {
+    position: absolute;
+    top: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    width: 100%;
+    z-index: 10;
+}
+
+.input-container ul li:hover {
+    background-color: gray;
+    color:white;
+
+}
+
+button {
+  background-color: #f3f7fe;
+  color: #3b82f6;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  height: 45px;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+button:hover {
+  background-color: #3b82f6;
+  box-shadow: 0 0 0 5px #3b83f65f;
+  color: #fff;
+}
+
+a {
+    color: black;
+    padding: 1rem;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+}
+
+
+table thead th {
+    background-color: #3b82f6; 
+    color: #ffffff; 
+    padding: 10px;
+    border: 1px solid #dddddd;
+    text-transform: uppercase;
+}
+
+
+table tbody td {
+    padding: 10px;
+    border: 1px solid #dddddd;
+}
+
+
+table tbody tr:nth-child(even) {
+    background-color: #f3f3f3; 
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #ffffff; 
+}
+
+
+table tbody tr:hover {
+    background-color: #f1f1f1; 
+    cursor: pointer; 
+}
+
+
+table caption {
+    caption-side: top;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
