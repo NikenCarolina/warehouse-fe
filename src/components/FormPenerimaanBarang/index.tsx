@@ -169,82 +169,88 @@ const FormPenerimaanBarang: React.FC = () => {
   return (
     <>
       <h2>Formulir Penerimaan Barang</h2>
-      <label>Nama Supplier</label>
-      <input
-        type="text"
-        value={supplierInput}
-        onChange={(e) => handleSupplierSearch(e.target.value)}
-        onFocus={() => {
-          setIsSupplierFocus(true);
-          handleSupplierSearch("");
-        }}
-        onBlur={() => {
-          if (supplier === undefined) setSupplierInput("");
-          setTimeout(() => setIsSupplierFocus(false), 250);
-        }}
-        placeholder="Supplier A"
-      />
-      <ul>
-        {isSupplierFetching && isSupplierFocus && <li>Loading...</li>}
-        {!isSupplierFetching &&
-          isSupplierFocus &&
-          supplierOptions.map((option) => (
-            <li
-              key={option.id}
-              onClick={() => {
-                setIsSupplierFocus(false);
-                setSupplier(option);
-                setSupplierInput(option.name);
-              }}
-              style={{
-                listStyle: "none",
-                padding: "5px",
-                cursor: "pointer",
-              }}
-            >
-              {option.name}
-            </li>
-          ))}
-      </ul>
-      <label>Nama Gudang</label>
-      <input
-        type="text"
-        value={warehouseInput}
-        onChange={(e) => handleWarehouseSearch(e.target.value)}
-        onFocus={() => {
-          setIsWarehouseFocus(true);
-          handleWarehouseSearch("");
-        }}
-        onBlur={() => {
-          if (warehouse === undefined) setWarehouseInput("");
+      <div className="input-container">
+        <input
+          type="text"
+          value={supplierInput}
+          className="input-field"
+          onChange={(e) => handleSupplierSearch(e.target.value)}
+          onFocus={() => {
+            setIsSupplierFocus(true);
+            handleSupplierSearch("");
+          }}
+          onBlur={() => {
+            if (supplier === undefined) setSupplierInput("");
+            setTimeout(() => setIsSupplierFocus(false), 250);
+          }}
+          placeholder="Cari nama supplier..."
+        />
+        <label className="input-label">Nama Supplier</label>
+        <span className="input-highlight"></span>
+        <ul>
+          {isSupplierFetching && isSupplierFocus && <li>Loading...</li>}
+          {!isSupplierFetching &&
+            isSupplierFocus &&
+            supplierOptions.map((option) => (
+              <li
+                key={option.id}
+                onClick={() => {
+                  setIsSupplierFocus(false);
+                  setSupplier(option);
+                  setSupplierInput(option.name);
+                }}
+                style={{
+                  listStyle: "none",
+                  padding: "5px",
+                  cursor: "pointer",
+                }}
+              >
+                {option.name}
+              </li>
+            ))}
+        </ul>
+      </div>
+      <div className="input-container">
+        <input
+          type="text"
+          value={warehouseInput}
+          onChange={(e) => handleWarehouseSearch(e.target.value)}
+          onFocus={() => {
+            setIsWarehouseFocus(true);
+            handleWarehouseSearch("");
+          }}
+          className="input-field"
+          onBlur={() => {
+            if (warehouse === undefined) setWarehouseInput("");
 
-          setTimeout(() => setIsWarehouseFocus(false), 250);
-        }}
-        placeholder="Gudang A"
-      />
-      <ul>
-        {isWarehouseFetching && isWarehouseFocus && <li>Loading...</li>}
-        {!isWarehouseFetching &&
-          isWarehouseFocus &&
-          warehouseOptions.map((option) => (
-            <li
-              key={option.id}
-              onClick={() => {
-                setIsWarehouseFocus(false);
-                setWarehouse(option);
-                setWarehouseInput(option.name);
-              }}
-              style={{
-                listStyle: "none",
-                padding: "5px",
-                cursor: "pointer",
-              }}
-            >
-              {option.name}
-            </li>
-          ))}
-      </ul>
-      <button onClick={addNewRow}>Tambah Barang</button>
+            setTimeout(() => setIsWarehouseFocus(false), 250);
+          }}
+          placeholder="Cari nama gudang"
+        />
+        <label className="input-label">Nama Gudang</label>
+        <ul>
+          {isWarehouseFetching && isWarehouseFocus && <li>Loading...</li>}
+          {!isWarehouseFetching &&
+            isWarehouseFocus &&
+            warehouseOptions.map((option) => (
+              <li
+                key={option.id}
+                onClick={() => {
+                  setIsWarehouseFocus(false);
+                  setWarehouse(option);
+                  setWarehouseInput(option.name);
+                }}
+                style={{
+                  listStyle: "none",
+                  padding: "5px",
+                  cursor: "pointer",
+                }}
+              >
+                {option.name}
+              </li>
+            ))}
+        </ul>
+      </div>
       <table>
         <thead>
           <tr>
@@ -258,63 +264,74 @@ const FormPenerimaanBarang: React.FC = () => {
           {items.map((row, index) => (
             <tr key={index}>
               <td>
-                <input
-                  type="text"
-                  value={row.name}
-                  onChange={(e) => handleProductSearch(index, e.target.value)}
-                  onFocus={(e) => {
-                    handleProductSearch(index, e.target.value);
-                    setIsFocus(index);
-                  }}
-                  onBlur={() => {
-                    if (row.id.length === 0)
-                      handleItemChange(index, "name", "");
-                    setTimeout(() => setIsFocus(-1), 250);
-                  }}
-                  placeholder={`Nama Barang`}
-                />
-                <ul>
-                  {isFetching && isFocus === index && <li>Loading...</li>}
-                  {!isFetching &&
-                    isFocus === index &&
-                    itemOptions.map((option) => (
-                      <li
-                        key={option.id}
-                        onClick={() => {
-                          handleItemChange(index, "name", option.name);
-                          handleItemChange(index, "id", option.id);
-                          setIsFocus(-1);
-                        }}
-                        style={{
-                          listStyle: "none",
-                          padding: "5px",
-                          cursor: "pointer",
-                        }}
-                      >
-                        {option.name}
-                      </li>
-                    ))}
-                </ul>
+                <div className="input-container">
+                  <input
+                    type="text"
+                    value={row.name}
+                    onChange={(e) => handleProductSearch(index, e.target.value)}
+                    onFocus={(e) => {
+                      handleProductSearch(index, e.target.value);
+                      setIsFocus(index);
+                    }}
+                    onBlur={() => {
+                      if (row.id.length === 0)
+                        handleItemChange(index, "name", "");
+                      setTimeout(() => setIsFocus(-1), 250);
+                    }}
+                    placeholder={`Nama Barang`}
+                    className="input-field"
+                  />
+                  <ul>
+                    {isFetching && isFocus === index && <li>Loading...</li>}
+                    {!isFetching &&
+                      isFocus === index &&
+                      itemOptions.map((option) => (
+                        <li
+                          key={option.id}
+                          onClick={() => {
+                            handleItemChange(index, "name", option.name);
+                            handleItemChange(index, "id", option.id);
+                            setIsFocus(-1);
+                          }}
+                          style={{
+                            listStyle: "none",
+                            padding: "5px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          {option.name}
+                        </li>
+                      ))}
+                  </ul>
+                </div>
               </td>
               <td>
-                <input
-                  type="number"
-                  value={row.dus}
-                  onChange={(e) =>
-                    handleItemChange(index, "dus", e.target.value)
-                  }
-                  placeholder={`1 Dus`}
-                />
+                <div className="input-container">
+                  <input
+                    type="number"
+                    min={1}
+                    value={row.dus}
+                    onChange={(e) =>
+                      handleItemChange(index, "dus", e.target.value)
+                    }
+                    placeholder={`1 Dus`}
+                    className="input-field"
+                  />
+                </div>
               </td>
               <td>
-                <input
-                  type="number"
-                  value={row.pcs}
-                  onChange={(e) =>
-                    handleItemChange(index, "pcs", e.target.value)
-                  }
-                  placeholder={`1 Pcs`}
-                />
+                <div className="input-container">
+                  <input
+                    type="number"
+                    min={1}
+                    value={row.pcs}
+                    onChange={(e) =>
+                      handleItemChange(index, "pcs", e.target.value)
+                    }
+                    placeholder={`1 Pcs`}
+                    className="input-field"
+                  />
+                </div>
               </td>
               <td>
                 <button onClick={() => removeRow(index)}>Hapus Barang</button>
@@ -323,8 +340,18 @@ const FormPenerimaanBarang: React.FC = () => {
           ))}
         </tbody>
       </table>
-      <label>Note</label>
-      <input value={note} onChange={(e) => setNote(e.target.value)}></input>
+      <div style={{ textAlign: "right" }}>
+        <button onClick={addNewRow}>Tambah Barang</button>
+      </div>
+      <div className="input-container">
+        <input
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          className="input-field"
+          placeholder="Note"
+        ></input>
+        <label className="input-label">Note</label>
+      </div>
       <p>{error}</p>
       <button onClick={handleSubmit}>Submit</button>
     </>
